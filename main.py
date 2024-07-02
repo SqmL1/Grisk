@@ -16,6 +16,7 @@ with sync_playwright() as pw:
     context = browser.new_context(viewport={"width": 1920, "height": 1080})
     page = context.new_page()
     page.goto("https://scrapfly.io/blog/web-scraping-with-playwright-and-python/")
+    page.wait_for_selector()
     print(page.content())
     
     
