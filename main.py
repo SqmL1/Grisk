@@ -11,12 +11,15 @@ page.goto("https://scrapfly.io/blog/web-scraping-with-playwright-and-python/")
 '''
 
 
-with sync_playwright() as pw:
-    browser = pw.chromium.launch(headless=False)
+# 1. open reddit WSB home page in chrome
+def run(playwright: playwright):
+    home_page = "https://www.reddit.com/r/wallstreetbets/"
+    browser = playwright.chromium.launch(headless=False, channel="chrome")
     context = browser.new_context(viewport={"width": 1920, "height": 1080})
     page = context.new_page()
-    page.goto("https://scrapfly.io/blog/web-scraping-with-playwright-and-python/")
+    page.goto(home_page)
     page.wait_for_selector()
-    print(page.content())
-    
-    
+
+
+with sync_playwright() as playwright:
+    run(playwright)
