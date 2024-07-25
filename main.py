@@ -2,6 +2,7 @@ import sqlite3, playwright, nltk, flask, nest_asyncio, parsel
 from playwright.sync_api import sync_playwright
 import playwright.sync_api
 
+scrape_results_database = sqlite3.connect("Scrape.db")
 '''
 nest_asyncio.apply()
 pw = sync_playwright().start()
@@ -19,6 +20,7 @@ def run(playwright: playwright):
     page = context.new_page()
     page.goto(home_page)
     page.wait_for_selector()
+    sqlite3.a
 
 
 with sync_playwright() as playwright:
